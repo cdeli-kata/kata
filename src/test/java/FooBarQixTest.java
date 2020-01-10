@@ -36,4 +36,33 @@ public class FooBarQixTest {
         assertEquals("QixQix", fooBarQix.process(77));
     }
 
+    @Test
+    public void foo_bar_qix_51() {
+        assertEquals("FooBar", fooBarQix.process(51));
+    }
+
+    @Test
+    public void foo_bar_qix_53() {
+        assertEquals("BarFoo", fooBarQix.process(53));
+    }
+
+    @Test
+    public void foo_bar_qix_13() {
+        assertEquals("Foo", fooBarQix.process(13));
+    }
+
+    @Test
+    public void foo_bar_qix_15() {
+        assertEquals("FooBarBar", fooBarQix.process(15));
+    }
+
+    @Test
+    public void foo_bar_qix_33() {
+        assertEquals("FooFooFoo", fooBarQix.process(33));
+    }
+
+    @Test
+    public void foo_bar_qix_27() {
+        assertEquals("FooQix", fooBarQix.process(27));
+    }
 }
