@@ -1,32 +1,32 @@
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import static java.lang.Character.getNumericValue;
+
 public class FooBarQix {
 
     public String process(int digit) {
+        Map<Integer, String> rulesMap = new HashMap<>();
+        rulesMap.put(3, "Foo");
+        rulesMap.put(5, "Bar");
+        rulesMap.put(7, "Qix");
+
         //first rule
-        StringBuilder stringBuilder = new StringBuilder();
-        if(digit % 3 == 0) {
-            stringBuilder.append("Foo");
-        }
-        if(digit % 5 == 0) {
-            stringBuilder.append("Bar");
-        }
+        String fooBarQix = rulesMap
+                .keySet()
+                .stream()
+                .filter(divisor -> divisor != 7 && digit % divisor == 0)
+                .map(rulesMap::get)
+                .collect(Collectors.joining());
 
         //second rule
-        String number = String.valueOf(digit);
-        for (char c : number.toCharArray()) {
-            if(String.valueOf(3).charAt(0) == c) {
-                stringBuilder.append("Foo");
-            }
-            if(String.valueOf(5).charAt(0) == c) {
-                stringBuilder.append("Bar");
-            }
-            if(String.valueOf(7).charAt(0) == c) {
-                stringBuilder.append("Qix");
-            }
-        }
+        String digitAsString = String.valueOf(digit);
+        fooBarQix += digitAsString
+                .chars()//unicode
+                .mapToObj(intAsChar -> rulesMap.getOrDefault(getNumericValue(intAsChar), ""))
+                .collect(Collectors.joining());
 
-        if(stringBuilder.toString().isEmpty()) {
-            stringBuilder.append(digit);
-        }
-        return stringBuilder.toString();
+        return fooBarQix.isEmpty() ? digitAsString : fooBarQix;
     }
 }
