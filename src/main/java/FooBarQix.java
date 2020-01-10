@@ -12,7 +12,7 @@ public class FooBarQix {
         rulesMap.put(5, "Bar");
         rulesMap.put(7, "Qix");
 
-        //first rule
+        //first rule : number divisible by 3 then Foo, divisible by 5 then Bar
         String fooBarQix = rulesMap
                 .keySet()
                 .stream()
@@ -20,7 +20,7 @@ public class FooBarQix {
                 .map(rulesMap::get)
                 .collect(Collectors.joining());
 
-        //second rule
+        //second rule : append if number contains (3 -> Foo), (5 -> Bar), (3 -> Qix)
         String digitAsString = String.valueOf(digit);
         fooBarQix += digitAsString
                 .chars()//unicode

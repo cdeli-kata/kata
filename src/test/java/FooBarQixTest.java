@@ -1,68 +1,41 @@
-import org.junit.Before;
 import org.junit.Test;
-
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import java.util.Arrays;
+import java.util.Collection;
 import static org.junit.Assert.*;
+import static org.junit.runners.Parameterized.*;
 
+@RunWith(Parameterized.class)
 public class FooBarQixTest {
-    private FooBarQix fooBarQix;
+    @Parameters
+    public static Collection<Object[]> getParams() {
+        return Arrays.asList(new Object[][] {
+                {1, "1"},
+                {3, "FooFoo"},
+                {5, "BarBar"},
+                {7, "Qix"},
+                {77, "QixQix"},
+                {51, "FooBar"},
+                {53, "BarFoo"},
+                {13, "Foo"},
+                {15, "FooBarBar"},
+                {33, "FooFooFoo"},
+                {27, "FooQix"},
+                {100, "Bar"}
+        });
+    }
 
-    @Before
-    public void setUp() {
-        fooBarQix = new FooBarQix();
+    private int digit;
+    private String expected;
+    public FooBarQixTest(int digit, String expected) {
+        this.digit = digit;
+        this.expected = expected;
     }
 
     @Test
-    public void foo_bar_qix_1() {
-        assertEquals("1", fooBarQix.process(1));
+    public void foo_bar_qix() {
+        assertEquals(digit + " failed !", expected, FooBarQix.process(digit));
     }
 
-    @Test
-    public void foo_bar_qix_3() {
-        assertEquals("FooFoo", fooBarQix.process(3));
-    }
-
-    @Test
-    public void foo_bar_qix_5() {
-        assertEquals("BarBar", fooBarQix.process(5));
-    }
-
-    @Test
-    public void foo_bar_qix_7() {
-        assertEquals("Qix", fooBarQix.process(7));
-    }
-
-    @Test
-    public void foo_bar_qix_77() {
-        assertEquals("QixQix", fooBarQix.process(77));
-    }
-
-    @Test
-    public void foo_bar_qix_51() {
-        assertEquals("FooBar", fooBarQix.process(51));
-    }
-
-    @Test
-    public void foo_bar_qix_53() {
-        assertEquals("BarFoo", fooBarQix.process(53));
-    }
-
-    @Test
-    public void foo_bar_qix_13() {
-        assertEquals("Foo", fooBarQix.process(13));
-    }
-
-    @Test
-    public void foo_bar_qix_15() {
-        assertEquals("FooBarBar", fooBarQix.process(15));
-    }
-
-    @Test
-    public void foo_bar_qix_33() {
-        assertEquals("FooFooFoo", fooBarQix.process(33));
-    }
-
-    @Test
-    public void foo_bar_qix_27() {
-        assertEquals("FooQix", fooBarQix.process(27));
-    }
 }
