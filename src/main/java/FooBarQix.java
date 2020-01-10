@@ -6,7 +6,7 @@ import static java.lang.Character.getNumericValue;
 
 public class FooBarQix {
 
-    public String process(int digit) {
+    public static String process(int digit) {
         Map<Integer, String> rulesMap = new HashMap<>();
         rulesMap.put(3, "Foo");
         rulesMap.put(5, "Bar");
